@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+    <img class="img" id="blackholePreview" src="Images/blackhole.jpg" onclick="changeMode()"/>
+      <img class="img" id="planetPreview" src="Images/planetsim.jpg" onclick="changeMode()"/>
+    <button class="button" id="homeBtn" onclick="homepage()">Homepage</button>
+    <select class="select" id="blackholeSelect" onchange="changeBlackhole()">
+      <option value="7220">Messier 87</option>
+      <option value="28400">NGC 6166</option>
+      <option value="4000">Hercules A</option>
+      <option value="1000">Cygnus A</option>
+      <option value="40700">TON 618</option>
+      <option value="100000">Phoenix A</option>
+      <option value="270000">Theoretical Limit</option>
+    </select>
+    <select class="select" id="directionSelect" onchange="changeBlackhole()">
+      <option value="0">Left to Right</option>
+      <option value="Math.PI">Right to Left</option>
+      <option value="Math.PI / 2">Top to Bottom</option>
+      <option value="-Math.PI / 2">Bottom to Top</option>
+    </select>
+    <button id="photonWaveBtn" class="button" onclick="photonWave()">Wave of Photons</button>
+    <button id="startStopBtn" class="button" onclick="togglePhotonWave()">Stop Photon Wave</button>
+    <button id="clearBtn" class="button" onclick="clearCanvas()">Clear</button>
+    <div id="controls">
+      <label for="planet" id="pLabel" class="label">Select a planet:</label>
+      <select id="planet" class="select">
+        <option value="9.81">Earth</option>
+        <option value="1.62">Moon</option>
+        <option value="274">Sun</option>
+        <option value="3.7">Mercury</option>
+        <option value="8.87">Venus</option>
+        <option value="3.71">Mars</option>
+        <option value="24.79">Jupiter</option>
+        <option value="10.44">Saturn</option>
+        <option value="8.871">Uranus</option>
+        <option value="11.15">Neptune</option>
+        <option value="0.62">Pluto the GOAT</option>
+      </select>
+      <label for="massSlider" id="mLabel" class="label">Select mass:</label>
+      <input type="range" id="massSlider" min="1" max="10" step="0.001" value="5" class="slider" />
+      <span id="massValue">5.00</span>
+      <label for="windDirection" id="windDLabel" class="label">Select wind direction:</label>
+      <select id="windDirection" class="select">
+        <option value="N">North</option>
+        <option value="NE">Northeast</option>
+        <option value="E">East</option>
+        <option value="SE">Southeast</option>
+        <option value="S">South</option>
+        <option value="SW">Southwest</option>
+        <option value="W">West</option>
+        <option value="NW">Northwest</option>
+      </select>
+      <label for="windSlider" id="windSLabel" class="label">Select wind magnitude:</label>
+      <input type="range" id="windSlider" min="0" max="10" step="0.001" value="0" class="slider" />
+      <span id="windValue">0.00</span>
+      <label for="elasticitySlider" id="eLabel" class="label">Select elasticity:</label>
+      <input type="range" id="elasticitySlider" min="0" max="1" step="0.001" value="0.8" class="slider" />
+      <span id="elasticityValue">0.80</span>
+      <label for="landscapeType" id="landscapeLabel" class="label">Noise Landscape:</label>
+      <input type="checkbox" id="landscapeType" checked>
+      <label for="noiseSlider" id="noiseLabel" class="label">Scale:</label>
+      <input type="range" id="noiseSlider" min="0.001" max="0.05" step="0.001" value="0.01" class="slider" />
+      <button class="button" id="clearBalls" onclick="clearBalls()">Clear</button>
+      <button class="button" id="restart" onclick="restart()">Restart</button>
+    </div>
+  </head>
+  <body>
+    <main>
+    </main>
+    <script src="p5.easycam.min.js"></script>
+    <script src="sketch.js"></script>
+    <script src="blackholeObjects/blackhole.js"></script>
+    <script src="blackholeObjects/photon.js"></script>
+    <script src="blackholeObjects/blackholeStar.js"></script>
+    <script src="planetObjects/ball.js"></script>
+    <script src="planetObjects/planetStar.js"></script>
+    <script src="planetObjects/windParticle.js"></script>
+    <script src="planetFunctions.js"></script>
+    <script src="blackholeFunctions.js"></script>
+  </body>
+</html>
