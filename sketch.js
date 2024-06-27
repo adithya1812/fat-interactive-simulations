@@ -135,7 +135,6 @@ function setup() {
     gravity = float(planetSelector.value());
     elasticity = float(elasticitySlider.value());
     // Generate the ground based on checkbox state
-    updateLandscape();
     updateGravity();
     // Initialize wind particles
     spaceMode = round(random(1, 2));
