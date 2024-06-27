@@ -51,6 +51,7 @@ function generateGradient(colors) {
 }
 
 function updateGravity() {
+  updateLandscape();
   createCanvas(windowWidth, windowHeight);
   wind = createVector(0, 0);
   switch (planetSelector.value()) {
