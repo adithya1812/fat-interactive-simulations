@@ -10,7 +10,7 @@ canvas {
   position: absolute;
   width: 536px;
   height: 316px;
-  top: 250px;
+  top: 220px;
   transition-duration: 0.6s;
 }
 .img:hover {
