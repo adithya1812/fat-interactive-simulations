@@ -180,8 +180,8 @@ function draw() {
     fill(255);
     textSize(24);
     textFont("Georgia");
-    text("Planet Simulator", width / 2 - 330, 700);
-    text("Black Hole Simulator", width / 2 + 330, 700);
+    text("Planet Simulator", width / 2 - 330, 565);
+    text("Black Hole Simulator", width / 2 + 330, 565);
   } else if (mode == "blackhole") {
     background(0);
     lights(lights());
