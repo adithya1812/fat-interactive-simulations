@@ -55,7 +55,7 @@ class Ball {
     // Check for collision with the ground
     if (this.position.y + this.r > ground[floor(this.position.x)]) {
       this.position.y = ground[floor(this.position.x)] - this.r;
-      this.velocity.y *= -elasticity; // Apply elasticity to vertical velocity
+      this.velocity.y *= -1;
     } else if (this.position.y < this.r + 90) {
       let index = balls.indexOf(this);
       balls.splice(index, 1);
