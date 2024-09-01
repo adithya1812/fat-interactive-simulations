@@ -1,13 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Link to the p5.js library for drawing and animation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.js"></script>
+    <!-- Link to the p5.sound library for sound functionalities -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/addons/p5.sound.min.js"></script>
+    <!-- Link to external CSS for styling -->
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
+    
+    <!-- Images for user interface elements -->
     <img class="img" id="blackholePreview" src="Images/blackhole.jpg" onclick="changeMode()"/>
-      <img class="img" id="planetPreview" src="Images/planetsim.jpg" onclick="changeMode()"/>
+    <img class="img" id="planetPreview" src="Images/planetsim.jpg" onclick="changeMode()"/>
+    <img id="helpBtn" src="Images/help-btn.png" />
+    <p id="helpBtnText">← Click for help</p>
+    
+    <!-- Help content that appears when help button is clicked -->
+    <div id="helpContent">
+      <p id="helpText"></p>
+      <button id="closeHelpBtn" class="button">Close</button>
+    </div>
+    
+    <!-- Navigation and control buttons -->
     <button class="button" id="homeBtn" onclick="homepage()">Homepage</button>
+    
+    <!-- Dropdown menu to select a black hole and adjust camera distance -->
     <select class="select" id="blackholeSelect" onchange="changeBlackhole()">
       <option value="7220">Messier 87</option>
       <option value="28400">NGC 6166</option>
@@ -17,15 +34,28 @@
       <option value="100000">Phoenix A</option>
       <option value="270000">Theoretical Limit</option>
     </select>
-    <select class="select" id="directionSelect" onchange="changeBlackhole()">
+    
+    <!-- Dropdown menu to select the direction of photon emission -->
+    <select class="select" id="directionSelect">
       <option value="0">Left to Right</option>
-      <option value="Math.PI">Right to Left</option>
-      <option value="Math.PI / 2">Top to Bottom</option>
-      <option value="-Math.PI / 2">Bottom to Top</option>
+      <option value="3.14">Right to Left</option>
+      <option value="1.57">Top to Bottom</option>
+      <option value="-1.57">Bottom to Top</option>
     </select>
+    
+    <!-- Buttons for controlling photon wave and clearing the canvas -->
     <button id="photonWaveBtn" class="button" onclick="photonWave()">Wave of Photons</button>
     <button id="startStopBtn" class="button" onclick="togglePhotonWave()">Stop Photon Wave</button>
     <button id="clearBtn" class="button" onclick="clearCanvas()">Clear</button>
+    
+    <!-- Information display for photon status -->
+    <div id="photonInfo">
+      <p id="photonSpeed">Photon Speed: </p>
+      <p id="photonStatus">Photon Status: </p>
+      <p id="photonDistance">Distance from Event Horizon: </p>
+    </div>
+    
+    <!-- Control panel for selecting planet properties, wind direction, and other settings -->
     <div id="controls">
       <label for="planet" id="pLabel" class="label">Select a planet:</label>
       <select id="planet" class="select">
@@ -41,9 +71,13 @@
         <option value="11.15">Neptune</option>
         <option value="0.62">Pluto the GOAT</option>
       </select>
+      
+      <!-- Slider for selecting planet mass -->
       <label for="massSlider" id="mLabel" class="label">Select mass:</label>
       <input type="range" id="massSlider" min="1" max="10" step="0.001" value="5" class="slider" />
       <span id="massValue">5.00</span>
+      
+      <!-- Dropdown menu for selecting wind direction -->
       <label for="windDirection" id="windDLabel" class="label">Select wind direction:</label>
       <select id="windDirection" class="select">
         <option value="N">North</option>
@@ -55,16 +89,28 @@
         <option value="W">West</option>
         <option value="NW">Northwest</option>
       </select>
+      
+      <!-- Slider for selecting wind magnitude -->
       <label for="windSlider" id="windSLabel" class="label">Select wind magnitude:</label>
       <input type="range" id="windSlider" min="0" max="10" step="0.001" value="0" class="slider" />
       <span id="windValue">0.00</span>
+      
+      <!-- Slider for selecting elasticity -->
       <label for="elasticitySlider" id="eLabel" class="label">Select elasticity:</label>
       <input type="range" id="elasticitySlider" min="0" max="1" step="0.001" value="0.8" class="slider" />
       <span id="elasticityValue">0.80</span>
+      
+      <!-- Checkbox and slider for noise landscape and noise scale -->
       <label for="landscapeType" id="landscapeLabel" class="label">Noise Landscape:</label>
       <input type="checkbox" id="landscapeType" checked>
       <label for="noiseSlider" id="noiseLabel" class="label">Scale:</label>
       <input type="range" id="noiseSlider" min="0.001" max="0.05" step="0.001" value="0.01" class="slider" />
+      
+      <!-- Checkbox for moving stars in the background -->
+      <input type="checkbox" id="starsChecked" >
+      <label for="starsChecked" id="starsLabel" class="label">Moving stars in background</label>
+      
+      <!-- Buttons for clearing and restarting the simulation -->
       <button class="button" id="clearBalls" onclick="clearBalls()">Clear</button>
       <button class="button" id="restart" onclick="restart()">Restart</button>
     </div>
@@ -72,6 +118,8 @@
   <body>
     <main>
     </main>
+    
+    <!-- JavaScript files for additional functionalities -->
     <script src="p5.easycam.min.js"></script>
     <script src="sketch.js"></script>
     <script src="blackholeObjects/blackhole.js"></script>
