@@ -14,6 +14,7 @@ let dt = 0.1; // Time step for simulation
 
 // Variables for black hole simulation
 let blackHole;
+let blackHoleMass;
 let blackholeSelect;
 let directionSelect;
 let direction;
@@ -137,8 +138,8 @@ function setup() {
     createCanvas(windowWidth, windowHeight, WEBGL); // Create WebGL canvas
     helpBtn.show(); // Show help button
     helpBtnText.show(); // Show help text
-    helpBtn.position(20, 300); // Position help button
-    helpBtnText.position(75, 300); // Position help text
+    helpBtn.position(20, 320); // Position help button
+    helpBtnText.position(75, 320); // Position help text
     blackHole = new Blackhole(width / 2, height / 2, 7220); // Create black hole object
     for (let i = 0; i < numStars; i++) {
       bhStars[i] = new bhStar(); // Create stars for black hole
@@ -281,14 +282,28 @@ function draw() {
     background(0); // Set background color to black
     lights(lights()); // Set up lighting
     orbitControl(1, 1, 1, { freeRotation: true }); // Enable orbit controls for camera
-
     // Update and display particles
     for (let p of particles) {
       blackHole.pull(p); // Pull particle towards the black hole
       p.update(); // Update particle position
       p.show(); // Display particle
     }
-
+    // Blackholes' true mass
+    if (blackHole.mass == 7220) {
+      blackHoleMass = "7.22 x 10^9"
+    } else if (blackHole.mass == 28400) {
+      blackHoleMass = "2.84 x 10^10"
+    } else if (blackHole.mass == 4000) {
+      blackHoleMass = "4.00 x 10^9"
+    } else if (blackHole.mass == 1000) {
+      blackHoleMass = "1.00 x 10^9"
+    } else if (blackHole.mass == 40700) {
+      blackHoleMass = "4.07 x 10^10"
+    } else if (blackHole.mass == 100000) {
+      blackHoleMass = "1.00 x 10^11"
+    } else if (blackHole.mass == 270000) {
+      blackHoleMass = "2.70 x 10^11"
+    } 
     // Update photon information if a nearest ball is selected
     if (nearestBall != null) {
       distanceToEventHorizon = blackHole.distanceToEventHorizon(nearestBall); // Calculate distance to event horizon
@@ -296,15 +311,17 @@ function draw() {
       let photonDistance = distanceToEventHorizon.toFixed(2); // Format distance
       let photonStatus = distanceToEventHorizon <= 0 ? "Inside" : "Outside"; // Check photon status
 
-      // Update photon info display
+      // Update photon info and black hole size display
       document.getElementById("photonSpeed").innerText = `Photon Speed: ${photonSpeed} m/s`;
       document.getElementById("photonStatus").innerText = `Photon Status: ${photonStatus} the black hole`;
       document.getElementById("photonDistance").innerText = `Distance from Event Horizon: ${photonDistance} arbitrary units`;
+      document.getElementById("blackHoleSize").innerText = `Size of Black Hole: ${blackHoleMass} solar masses`
     } else {
-      // Clear photon info display if no nearest ball is selected
+      // Clear photon info and black hole size display if no nearest ball is selected
       document.getElementById("photonSpeed").innerText = `Photon Speed:`;
       document.getElementById("photonStatus").innerText = `Photon Status:`;
       document.getElementById("photonDistance").innerText = `Distance from Event Horizon:`;
+      document.getElementById("blackHoleSize").innerText = `Size of Black Hole: ${blackHoleMass} solar masses`
     }
 
     // Display the black hole and stars
