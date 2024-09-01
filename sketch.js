@@ -239,8 +239,8 @@ function setup() {
         - Right-click to select the nearest photon.<br>
         - Choose the black hole you would like to see using the black hole dropdown menu.<br>
         - Use the direction controls to emit new particles in different directions.<br>
-        - Drag and move with your left mouse button to move around in the x, y, and z axis.<br>
-        - Drag and move with your right mouse button to move around in the x and y axis.<br>
+        - Click and drag with your left mouse button to move around in the x, y, and z axis.<br>
+        - Click and drag with your right mouse button to move around in the x and y axis.<br>
         - Double-click to return to your original position.<br>
         - Observe how photons and stars are affected by the black hole's gravity.<br>
         - Press clear to reset the photons.
