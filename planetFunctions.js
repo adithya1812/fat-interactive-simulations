@@ -1,41 +1,34 @@
-function mousePressed() {
-  if (mouseY > 90 && mouseY < ground[mouseX]) {
-    // Get mass from the slider and scale the radius
-    let mass = float(massSlider.value());
-    let radius = mass * 5; // Scale radius based on mass
-    // Add a new ball at the mouse position with selected mass
-    let ball = new Ball(mouseX, mouseY, radius, mass);
-    balls.push(ball);
-  }
-}
-
+// Handles mouse wheel events to move the starfield forward or backward
 function mouseWheel(event) {
-  scrolledMillis = millis();
-  starfieldMove = true;
+  scrolledMillis = millis();  // Record the current time
+  starfieldMove = true;       // Enable starfield movement
   if (event.delta < 0) {
-    starfieldForward = true;
+    starfieldForward = true;  // Move starfield forward if scrolling down
   } else if (event.delta > 0) {
-    starfieldForward = false;
+    starfieldForward = false; // Move starfield backward if scrolling up
   }
 }
 
+// Handles key press events to move the starfield up or down
 function keyPressed() {
   if (keyCode == UP_ARROW || keyCode == DOWN_ARROW) {
-    starfieldArrow = true;
+    starfieldArrow = true;   // Enable starfield movement
     if (keyCode == UP_ARROW) {
-      starfieldForward = true;
+      starfieldForward = true;  // Move starfield forward if UP_ARROW is pressed
     } else {
-      starfieldForward = false;
+      starfieldForward = false; // Move starfield backward if DOWN_ARROW is pressed
     }
   }
 }
 
+// Handles key release events to stop moving the starfield
 function keyReleased() {
   if (keyCode == UP_ARROW || keyCode == DOWN_ARROW) {
-    starfieldArrow = false;
+    starfieldArrow = false;  // Disable starfield movement
   }
 }
 
+// Generates a linear gradient based on an array of colors
 function generateGradient(colors) {
   let colourGradient = drawingContext.createLinearGradient(
     0,
@@ -43,20 +36,22 @@ function generateGradient(colors) {
     0,
     height
   );
-  let step = 1 / (colors.length - 1);
+  let step = 1 / (colors.length - 1); // Calculate the step for color stops
   for (let i = 0; i < colors.length; i++) {
-    colourGradient.addColorStop(i * step, colors[i]);
+    colourGradient.addColorStop(i * step, colors[i]); // Add color stops to the gradient
   }
   return colourGradient;
 }
 
+// Updates the gravity and landscape settings based on user input
 function updateGravity() {
-  updateLandscape();
-  createCanvas(windowWidth, windowHeight);
-  wind = createVector(0, 0);
+  updateLandscape();   // Update the landscape based on current settings
+  createCanvas(windowWidth, windowHeight); // Resize the canvas
+  wind = createVector(0, 0);  // Reset wind vector
+  
+  // Set gradient colors based on selected planet
   switch (planetSelector.value()) {
     case "9.81":
-      // Earth gradient
       gradient = generateGradient([
         color(80, 132, 42),
         color(68, 120, 4),
@@ -69,7 +64,6 @@ function updateGravity() {
       ]);
       break;
     case "1.62":
-      // Moon gradient
       gradient = generateGradient([
         color(232, 229, 24),
         color(218, 216, 223),
@@ -82,7 +76,6 @@ function updateGravity() {
       ]);
       break;
     case "274":
-      // Sun gradient
       gradient = generateGradient([
         color(248, 255, 137),
         color(255, 228, 132),
@@ -94,7 +87,6 @@ function updateGravity() {
       ]);
       break;
     case "3.7":
-      // Mercury gradient
       gradient = generateGradient([
         color(231, 232, 236),
         color(173, 168, 165),
@@ -104,7 +96,6 @@ function updateGravity() {
       ]);
       break;
     case "8.87":
-      //Venus gradient
       gradient = generateGradient([
         color(238, 203, 139),
         color(244, 196, 79),
@@ -116,7 +107,6 @@ function updateGravity() {
       ]);
       break;
     case "3.71":
-      // Mars gradient
       gradient = generateGradient([
         color(69, 24, 4),
         color(193, 68, 14),
@@ -128,7 +118,6 @@ function updateGravity() {
       ]);
       break;
     case "24.79":
-      // Jupiter gradient
       gradient = generateGradient([
         color(235, 243, 246),
         color(227, 220, 203),
@@ -138,7 +127,6 @@ function updateGravity() {
       ]);
       break;
     case "10.44":
-      // Saturn gradient
       gradient = generateGradient([
         color(237, 219, 173),
         color(226, 191, 125),
@@ -150,7 +138,6 @@ function updateGravity() {
       ]);
       break;
     case "8.871":
-      // Uranus gradient
       gradient = generateGradient([
         color(225, 238, 238),
         color(209, 231, 231),
@@ -162,7 +149,6 @@ function updateGravity() {
       ]);
       break;
     case "11.15":
-      // Neptune gradient
       gradient = generateGradient([
         color(71, 126, 253),
         color(116, 214, 253),
@@ -172,7 +158,6 @@ function updateGravity() {
       ]);
       break;
     case "0.62":
-      // Pluto gradient
       gradient = generateGradient([
         color(255, 241, 213),
         color(246, 221, 189),
@@ -183,21 +168,27 @@ function updateGravity() {
       ]);
       break;
   }
-  clearBalls();
+  
+  clearBalls();  // Clear the balls in the simulation
 }
 
+// Updates the displayed value for mass based on slider input
 function updateMassValue() {
   if (massValueDisplay) {
-    massValueDisplay.html(massSlider.value().toFixed(2));
+    massValueDisplay.html(massSlider.value().toFixed(2));  // Update the mass value display
   }
 }
 
+// Updates wind vector based on selected direction and magnitude
 function updateWind() {
-  let direction = windDirectionSelector.value();
-  let magnitude = windSlider.value();
+  let direction = windDirectionSelector.value();  // Get the selected wind direction
+  let magnitude = windSlider.value();  // Get the selected wind magnitude
+  
   if (windValueDisplay) {
-    windValueDisplay.html(windSlider.value().toFixed(2));
+    windValueDisplay.html(windSlider.value().toFixed(2));  // Update the wind magnitude display
   }
+  
+  // Set wind vector based on the direction and magnitude
   switch (direction) {
     case "N":
       wind = createVector(0, -magnitude);
@@ -224,40 +215,45 @@ function updateWind() {
       wind = createVector(-magnitude / sqrt(2), -magnitude / sqrt(2));
       break;
     default:
-      wind = createVector(0, 0);
+      wind = createVector(0, 0);  // Default to no wind
   }
 }
 
+// Updates the displayed value for elasticity based on slider input
 function updateElasticity() {
   let elasticityValueDisplay = select("#elasticityValue");
   if (elasticityValueDisplay) {
-    elasticityValueDisplay.html(elasticitySlider.value().toFixed(2));
+    elasticityValueDisplay.html(elasticitySlider.value().toFixed(2));  // Update the elasticity value display
   }
-  elasticity = float(elasticitySlider.value());
+  elasticity = float(elasticitySlider.value());  // Update the elasticity variable
 }
 
+// Updates the landscape based on the selected options and noise scale
 function updateLandscape() {
-  createCanvas(windowWidth, windowHeight);
-  noiseScale = float(noiseSlider.value());
-  gravity = float(planetSelector.value());
-  elasticity = float(elasticitySlider.value());
+  createCanvas(windowWidth, windowHeight);  // Resize the canvas
+  noiseScale = float(noiseSlider.value());  // Update noise scale
+  gravity = float(planetSelector.value());  // Update gravity based on planet selection
+  elasticity = float(elasticitySlider.value());  // Update elasticity
+  
+  // Update the ground based on noise or a fixed height
   if (landscapeTypeCheckbox.checked()) {
-    // Generate noise-based landscape
     for (let x = 0; x < width; x++) {
-      ground[x] = height - noise(x * noiseScale) * 100; // Adjust height parameters as needed
+      ground[x] = height - noise(x * noiseScale) * 100;
     }
   } else {
-    // Generate flat ground
     for (let x = 0; x < width; x++) {
-      ground[x] = height - 50; // Flat ground at a fixed height
+      ground[x] = height - 50;
     }
   }
 }
 
+// Clears all balls from the simulation
 function clearBalls() {
   balls = [];
+  nearestBall = null;
 }
 
+// Restarts the simulation by calling the setup function
 function restart() {
   setup();
 }
