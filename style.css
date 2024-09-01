@@ -42,7 +42,7 @@ canvas {
 #helpContent {
   display: none; /* Initially hidden */
   position: absolute;
-  top: 300px;
+  top: 320px;
   left: 20px;
   background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
   color: white;
