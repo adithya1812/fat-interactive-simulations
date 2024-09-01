@@ -309,6 +309,9 @@ function draw() {
       distanceToEventHorizon = blackHole.distanceToEventHorizon(nearestBall); // Calculate distance to event horizon
       let photonSpeed = 299792458; // Speed of light in meters per second
       let photonDistance = distanceToEventHorizon.toFixed(2); // Format distance
+      if (photonDistance < 0) {
+        photonDistance = 0
+      }
       let photonStatus = distanceToEventHorizon <= 0 ? "Inside" : "Outside"; // Check photon status
 
       // Update photon info and black hole size display
