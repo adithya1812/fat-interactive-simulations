@@ -1,53 +1,107 @@
-html,
-body {
+/* Basic reset for margins and paddings */
+html, body {
   margin: 0;
   padding: 0;
 }
+
+/* Make canvas fill the entire screen without scrollbars */
 canvas {
   display: block;
 }
+
+/* Styling for images with hover effect */
 .img {
   position: absolute;
   width: 536px;
   height: 316px;
   top: 220px;
-  transition-duration: 0.6s;
+  transition-duration: 0.6s; /* Smooth transition for hover effect */
 }
+
 .img:hover {
-  box-shadow: 0 0 100px white;
+  box-shadow: 0 0 100px white; /* Add glowing effect on hover */
 }
+
+/* Help button styling */
+#helpBtn {
+  position: absolute;
+  display: none; /* Initially hidden */
+  width: 50px;
+  height: 50px;
+  transition-duration: 0.6s; /* Smooth transition for hover effect */
+}
+
+#helpBtnText {
+  position: absolute;
+  display: none; /* Initially hidden */
+  color: white;
+  font-family: Georgia;
+}
+
+/* Help content styling */
+#helpContent {
+  display: none; /* Initially hidden */
+  position: absolute;
+  top: 300px;
+  left: 20px;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  font-family: Georgia;
+}
+
+/* Help button hover effect */
+#helpBtn:hover {
+  filter: drop-shadow(0 0 10px white); /* Add glowing effect on hover */
+}
+
+/* Styling for select elements */
 .select {
-  display: none;
+  display: none; /* Initially hidden */
   position: absolute;
   color: #EAE0D5;
   background-color: #5E503F;
-  transition-duration: 0.6s;
+  transition-duration: 0.6s; /* Smooth transition for hover effect */
   left: 10px;
   font-family: Georgia;
 }
+
 .select:hover {
-  background-color: #000000;
-  color: #59FF6A;
+  background-color: #000000; /* Change background color on hover */
+  color: #59FF6A; /* Change text color on hover */
 }
+
+/* Positioning for specific select elements */
 #directionSelect {
   top: 44px;
 }
+
 #blackholeSelect {
   top: 20px;
 }
 
-/* Styling for trail slider */
+/* Styling for photon info display */
+#photonInfo {
+  display: none; /* Initially hidden */
+  position: absolute;
+  top: 180px;
+  left: 20px;
+  color: white;
+}
+
+/* Slider styling for trails */
 .slider {
-  display: none;
+  display: none; /* Initially hidden */
   position: absolute;
   background-color: #5E503F;
-  -webkit-appearance: none;
+  -webkit-appearance: none; /* Remove default styling in WebKit browsers */
   border-radius: 10px;
 }
 
 /* Styling for slider thumb in WebKit browsers */
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
+  -webkit-appearance: none; /* Remove default styling */
   border: 1px solid #000000;
   height: 14px;
   width: 14px;
@@ -59,7 +113,7 @@ canvas {
 
 /* Styling for slider thumb in Mozilla browsers */
 .slider::-moz-range-thumb {
-  -webkit-appearance: none;
+  -webkit-appearance: none; /* Remove default styling */
   border: 1px solid #000000;
   height: 16px;
   width: 16px;
@@ -71,74 +125,92 @@ canvas {
 
 /* Hover effects for slider */
 .slider:hover {
-  background: #000000;
-  transition-duration: 1s;
+  background: #000000; /* Change background color on hover */
+  transition-duration: 1s; /* Smooth transition */
 }
 
 /* Hover effect for slider thumb in WebKit browsers */
 .slider::-webkit-slider-thumb:hover {
-  background: #59FF6A;
-  transition-duration: 1s;
+  background: #59FF6A; /* Change thumb color on hover */
+  transition-duration: 1s; /* Smooth transition */
 }
 
 /* Hover effect for slider thumb in Mozilla browsers */
 .slider::-moz-range-thumb:hover {
-  background: #59FF6A;
-  transition-duration: 1s;
+  background: #59FF6A; /* Change thumb color on hover */
+  transition-duration: 1s; /* Smooth transition */
 }
+
+/* Styling for labels */
 .label {
   color: #5E503F;
   font-size: 14px;
   font-family: Georgia;
 }
+
+/* Positioning for various UI elements */
 #planet,
 #massSlider,
 #pLabel,
 #mLabel,
-#massValue {
-  display: none;
+#massValue,
+#starsChecked,
+#starsLabel {
+  display: none; /* Initially hidden */
   position: absolute;
   top: 15px;
 }
+
 #pLabel {
   left: 20px;
 }
+
 #planet {
   left: 120px;
 }
+
 #mLabel {
   left: 250px;
 }
+
 #massValue {
   left: 335px;
 }
+
 #massSlider {
   left: 370px;
 }
+
 #windDirection,
 #windDLabel,
 #windSlider,
 #windSLabel,
 #windValue {
-  display: none;
+  display: none; /* Initially hidden */
   position: absolute;
   top: 35px;
 }
+
 #windDLabel {
   left: 20px;
 }
+
 #windDirection {
   left: 165px;
 }
+
 #windSLabel {
   left: 265px;
 }
+
 #windSlider {
   left: 455px;
 }
+
 #windValue {
   left: 420px;
 }
+
 #eLabel,
 #elasticitySlider,
 #elasticityValue,
@@ -146,41 +218,49 @@ canvas {
 #landscapeType,
 #noiseLabel,
 #noiseSlider {
-  display: none;
+  display: none; /* Initially hidden */
   position: absolute;
   top: 55px;
 }
+
 #eLabel {
   left: 20px;
 }
+
 #elasticitySlider {
   left: 165px;
 }
+
 #elasticityValue {
   left: 130px;
 }
+
 #landscapeLabel {
   left: 310px;
 }
+
 #landscapeType {
   left: 430px;
 }
+
 #noiseLabel {
   left: 460px;
-  display: none;
+  display: none; /* Initially hidden */
 }
+
 #noiseSlider {
   left: 500px;
-  display: none;
+  display: none; /* Initially hidden */
 }
-/* Style for buttons */
+
+/* Styling for buttons */
 .button {
-  display: none;
+  display: none; /* Initially hidden */
   color: #EAE0D5;
   padding: 3px 5px;
   background-color: #5E503F;
   text-align: center;
-  transition-duration: 0.6s;
+  transition-duration: 0.6s; /* Smooth transition for hover effect */
   cursor: pointer;
   position: absolute;
   font-size: 14px;
@@ -190,34 +270,49 @@ canvas {
 
 /* Button hover effect */
 .button:hover {
-  background-color: #000000;
-  color: #59FF6A;
-  letter-spacing: 1px;
+  background-color: #000000; /* Change background color on hover */
+  color: #59FF6A; /* Change text color on hover */
+  letter-spacing: 1px; /* Add letter spacing on hover */
+}
+
+/* Positioning for specific buttons */
+#closeHelpBtn {
+  display: inline-block; /* Displayed inline */
 }
 
 #clearBalls,
 #restart {
   font-size: 20px;
   padding: 5px 7px;
-  left: 650px;
+  left: 650px; /* Position from the left edge */
 }
 
 #clearBalls {
-  top: 5px;
+  top: 5px; /* Position from the top edge */
 }
 
 #restart {
-  top: 45px;
+  top: 45px; /* Position from the top edge */
 }
 
 #clearBtn {
   top: 130px;
   left: 10px;
 }
+
+#starsChecked {
+  left: 730px;
+}
+
+#starsLabel {
+  left: 750px;
+}
+
 #photonWaveBtn {
   top: 70px;
   left: 10px;
 }
+
 #startStopBtn {
   top: 100px;
   left: 10px;
